@@ -10,22 +10,23 @@
 	<div id="outer">
 		<div id="inner">
 			<script>
+			console.log('Made by https://spartak.io', 'Github page https://github.com/mrspartak/tg-redirect');
 			function convert(){
-				var website = "%WEBSITE%"
-				var value = document.getElementById("inputUrl").value
+				var website = document.location.host;
+				var value = document.getElementById("inputUrl").value;
 				if(!value) return alert('No link provided');
 				if(value.indexOf('t.me') == -1) return alert('Wrong link');
 
-				var baseScheme = value.indexOf('http://') != -1 ? 'http://' : 'https://'
-				var currentScheme = document.location.protocol +'//'
+				var baseScheme = value.indexOf('http://') != -1 ? 'http://' : 'https://';
+				var currentScheme = document.location.protocol +'//';
 
-				var value = value.replace("t.me", website).replace(baseScheme, currentScheme).replace("@", currentScheme + website +"/")
+				var value = value.replace("t.me", website).replace(baseScheme, currentScheme).replace("@", currentScheme + website +"/");
 
-				document.getElementById("inputUrl").value = value
+				document.getElementById("inputUrl").value = value;
 
 				var link = document.getElementById("active_link");
-				link.href = value
-				link.className = 'btn display-block mt-15'
+				link.href = value;
+				link.className = 'btn display-block mt-15';
 			}
 			</script>
 

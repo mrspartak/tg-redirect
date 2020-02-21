@@ -18,22 +18,26 @@
 	</div>
 
 <script>
-	var count = +'%COUNTER%';
+	console.log('Made by https://spartak.io', 'Github page https://github.com/mrspartak/tg-redirect');
+	
+	var urlParams = new URLSearchParams(window.location.search);
+	var count_q = urlParams.get('counter');
+	var count = count_q ? +count_q : +'%COUNTER%';
 
 	var redirectlink = "";
 	var link = document.getElementById("active_link");
-	var location = document.location.pathname
+	var path = document.location.pathname;
 
-	if(location.indexOf('/joinchat/') != -1) {
-		var chat = location.replace('/joinchat/', '')
+	if(path.indexOf('/joinchat/') != -1) {
+		var chat = path.replace('/joinchat/', '');
 		var redirectlink = "tg://" + "join?invite="+ chat;
-		link.innerHTML = 'Join chat in Telegram'
+		link.innerHTML = 'Join chat in Telegram';
 	} else {
-		var domain = location.replace('/', '')
+		var domain = path.replace('/', '');
 		var redirectlink = "tg://" + "resolve?domain="+ domain;
 	}
 	
-	link.href = redirectlink
+	link.href = redirectlink;
 
 	function counter() {
 		var timer = document.getElementById("timer");
@@ -48,7 +52,7 @@
 		}
 	}
 
-	counter()
+	counter();
 </script>
 </body>
 </html>

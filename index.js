@@ -1,16 +1,15 @@
 (async () => {
 	const http = require('http');
+	const url = require('url');
 	const fsPromise = require('fs').promises;
 
 	/* config */
 	const PORT = +process.env.PORT || 3020;
-	const WEBSITE = process.env.WEBSITE || '127.0.0.1:3020';
 	const COUNTER = +process.env.COUNTER || 0;
 	const DEBUG = process.env.DEBUG || false;
 
 	console.log('APP_CONFIG', {
 		PORT,
-		WEBSITE,
 		COUNTER,
 		DEBUG,
 	});
@@ -26,30 +25,30 @@
 
 	//html
 	let indexPage = await fsPromise.readFile('./html/index.html');
-	indexPage = indexPage
-		.toString()
-		.replace('%WEBSITE%', WEBSITE)
-		.replace('%CSS%', css);
+	indexPage = indexPage.toString().replace('%CSS%', css);
+	indexPage = minimizeHTML(indexPage);
 
 	let redirectPage = await fsPromise.readFile('./html/redirect.html');
 	redirectPage = redirectPage
 		.toString()
 		.replace('%COUNTER%', COUNTER)
 		.replace('%CSS%', css);
+	redirectPage = minimizeHTML(redirectPage);
 
 	if (DEBUG) console.log('content prepeared', '+' + ((new Date().getTime() - tsStart) / 1000).toFixed(2) + ' sec');
 
 	/* serve requests */
 	const server = http.createServer(async (request, response) => {
-		if (DEBUG) console.log('req', request.url);
+		let path = url.parse(request.url).pathname;
+		if (DEBUG) console.log('req', path);
 
 		response.setHeader('Access-Control-Allow-Origin', '*');
 		response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
-		if (request.url == '/') {
+		if (path == '/') {
 			response.setHeader('Content-Type', 'text/html');
 			response.end(indexPage);
-		} else if (request.url == '/favicon.ico') {
+		} else if (path == '/favicon.ico') {
 			response.setHeader('Content-Type', 'image/x-icon');
 			response.end(favicon);
 		} else {
@@ -74,6 +73,14 @@
 		content = content.replace(/ ([{:}]) /g, '$1');
 		content = content.replace(/([;,]) /g, '$1');
 		content = content.replace(/ !/g, '!');
+		return content;
+	}
+	function minimizeHTML(_content) {
+		if (!_content) return _content;
+		var content = _content;
+
+		content = content.replace(/^\s+|\r\n|\n|\r|(>)\s+(<)|\s+$/gm, '$1$2');
+
 		return content;
 	}
 })();

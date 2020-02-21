@@ -8,9 +8,6 @@
     #port app will be launched at
     const APP_PORT = process.env.APP_PORT || 3020
 
-    #website e.i. tg.example.com
-    const WEBSITE = process.env.WEBSITE || '127.0.0.1:3020';
-
     #will count N seconds before redirect. 0 - instant redirect
     const COUNTER = +process.env.COUNTER || 0;
 
