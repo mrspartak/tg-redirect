@@ -30,6 +30,7 @@
 		.toString()
 		.replace('%WEBSITE%', WEBSITE)
 		.replace('%CSS%', css);
+
 	let redirectPage = await fsPromise.readFile('./html/redirect.html');
 	redirectPage = redirectPage
 		.toString()

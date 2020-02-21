@@ -22,13 +22,14 @@
 
 	var redirectlink = "";
 	var link = document.getElementById("active_link");
+	var location = document.location.pathname
 
-	if(document.location.pathname.indexOf('/joinchat/' != -1)) {
-		var chat = document.location.pathname.replace('/joinchat/', '')
+	if(location.indexOf('/joinchat/') != -1) {
+		var chat = location.replace('/joinchat/', '')
 		var redirectlink = "tg://" + "join?invite="+ chat;
 		link.innerHTML = 'Join chat in Telegram'
 	} else {
-		var domain = document.location.pathname.replace('/', '')
+		var domain = location.replace('/', '')
 		var redirectlink = "tg://" + "resolve?domain="+ domain;
 	}
 	
