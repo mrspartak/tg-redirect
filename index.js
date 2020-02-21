@@ -44,15 +44,16 @@
 
 		response.setHeader('Access-Control-Allow-Origin', '*');
 		response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+		response.setHeader('status', 200);
 
 		if (path == '/') {
-			response.setHeader('Content-Type', 'text/html');
+			response.setHeader('Content-Type', 'text/html; charset=utf-8');
 			response.end(indexPage);
 		} else if (path == '/favicon.ico') {
 			response.setHeader('Content-Type', 'image/x-icon');
 			response.end(favicon);
 		} else {
-			response.setHeader('Content-Type', 'text/html');
+			response.setHeader('Content-Type', 'text/html; charset=utf-8');
 			response.end(redirectPage);
 		}
 	});

@@ -15,12 +15,20 @@
 				var website = document.location.host;
 				var value = document.getElementById("inputUrl").value;
 				if(!value) return alert('No link provided');
-				if(value.indexOf('t.me') == -1) return alert('Wrong link');
+				value = value.trim().toLocaleLowerCase();
+				baseValue = value;
 
-				var baseScheme = value.indexOf('http://') != -1 ? 'http://' : 'https://';
+				if(value.indexOf('t.me') == -1 && value.indexOf('@') == -1) return alert('Wrong link');
+
+				var baseScheme = false;
+				if(value.indexOf('http://') != -1) baseScheme = 'http://';
+				if(value.indexOf('https://') != -1) baseScheme = 'https://';
+
 				var currentScheme = document.location.protocol +'//';
 
-				var value = value.replace("t.me", website).replace(baseScheme, currentScheme).replace("@", currentScheme + website +"/");
+				var value = value.replace("t.me", website).replace("@", currentScheme + website +"/");
+				if(baseScheme) value = value.replace(baseScheme, currentScheme);
+				else if(baseValue.indexOf('t.me') != -1) value = currentScheme + value;
 
 				document.getElementById("inputUrl").value = value;
 

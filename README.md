@@ -38,3 +38,22 @@ server {
     }
 }
 ```
+
+## Usage
+Can redirect such links:
+```
+//Profile link
+https://t.me/someuser
+
+//Public group
+https://t.me/durov
+
+//Group post
+https://t.me/durov/112
+
+//Join chat link
+https://t.me/joinchat/Br2O30m5d4jsehNIF9kduA
+
+//Add sticker
+https://t.me/addstickers/standcat
+```

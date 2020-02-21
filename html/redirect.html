@@ -3,9 +3,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta charset="UTF-8">
 	<title>Telegram redirector</title>
-	<link rel="icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 	<style type="text/css">%CSS%</style>
-	
 </head>
 <body>
 	<div id="outer">
@@ -32,9 +31,21 @@
 		var chat = path.replace('/joinchat/', '');
 		var redirectlink = "tg://" + "join?invite="+ chat;
 		link.innerHTML = 'Join chat in Telegram';
+	} else if(path.indexOf('/addstickers/') != -1) {
+		var stickers = path.replace('/addstickers/', '');
+		var redirectlink = "tg://" + "addstickers?set="+ stickers;
+		link.innerHTML = 'Add stickers in Telegram';
 	} else {
-		var domain = path.replace('/', '');
-		var redirectlink = "tg://" + "resolve?domain="+ domain;
+		var domain = path.replace(/^\//, '');
+		var isPost = domain.split('/');
+
+		if(isPost.length == 2) {
+			redirectlink = "tg://" + "resolve?domain="+ isPost[0] +'&post='+ isPost[1];
+			link.innerHTML = 'Open post in Telegram';
+		} else {
+			redirectlink = "tg://" + "resolve?domain="+ domain;
+			link.innerHTML = 'Open in Telegram';
+		}
 	}
 	
 	link.href = redirectlink;
@@ -47,9 +58,13 @@
 			timer.innerHTML = "You will be redirected in  " + count + " sec.";
 			setTimeout(counter, 1000);
 		} else {
-			window.location.href = redirectlink;
+			redirect(redirectlink);
 			timer.innerHTML = "Redirecting...";
 		}
+	}
+
+	function redirect(url) {
+		document.location = url;
 	}
 
 	counter();
