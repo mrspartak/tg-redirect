@@ -52,6 +52,20 @@ body, html {
 	animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
 }
 
+.contact {
+	position: fixed;
+	bottom:30px; 
+	left:0; 
+	right:0;
+}
+
+.text-error {
+	display: block;
+	color: red;
+	padding: 2px;
+	margin-top: 3px;
+}
+
 .mt-5 {margin-top: 5px;}
 .mt-15 {margin-top: 15px;}
 
