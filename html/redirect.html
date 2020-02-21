@@ -4,60 +4,50 @@
 	<meta charset="UTF-8">
 	<title>Telegram redirector</title>
 	<link rel="icon" type="image/x-icon" href="favicon.ico" />
-	<style type="text/css">
-		#outer {
-			width: 100%;
-			height: 100vh;
-			display: flex;
-		}
-
-		#inner {
-			margin: auto;
-		}
-
-		body, html {
-			height: 100%;
-		}
-
-		#sticky-footer {
-			flex-shrink: none;
-		}
-	</style>
+	<style type="text/css">%CSS%</style>
 	
 </head>
 <body>
 	<div id="outer">
 		<div id="inner">
-			<a href="tg://resolve?domain=design_labodina_blog" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Open in Telegram</a>
-			<div id="timer" class="alert alert-info mt-2" role="alert">
+			<a href="tg://resolve?domain=design_labodina_blog" id="active_link" class="btn" role="button" aria-pressed="true">Open in Telegram</a>
+			<div id="timer" class="mt-5">
 				Redirecting....
 			</div>
 		</div>
 	</div>
 
 <script>
-	let domain = document.location.pathname.replace('/', '')
 	var count = +'%COUNTER%';
-	var redirectlink = "tg://" + "resolve?domain="+ domain;
 
-	function redirect() {
-		window.location.href = redirectlink;
+	var redirectlink = "";
+	var link = document.getElementById("active_link");
+
+	if(document.location.pathname.indexOf('/joinchat/' != -1)) {
+		var chat = document.location.pathname.replace('/joinchat/', '')
+		var redirectlink = "tg://" + "join?invite="+ chat;
+		link.innerHTML = 'Join chat in Telegram'
+	} else {
+		var domain = document.location.pathname.replace('/', '')
+		var redirectlink = "tg://" + "resolve?domain="+ domain;
 	}
+	
+	link.href = redirectlink
 
-	function countDown() {
+	function counter() {
 		var timer = document.getElementById("timer");
 
 		if (count > 0) {
 			count--;
 			timer.innerHTML = "You will be redirected in  " + count + " sec.";
-			setTimeout(countDown, 1000);
+			setTimeout(counter, 1000);
 		} else {
-			redirect();
+			window.location.href = redirectlink;
 			timer.innerHTML = "Redirecting...";
 		}
 	}
 
-	countDown()
+	counter()
 </script>
 </body>
 </html>

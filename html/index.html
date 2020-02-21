@@ -4,29 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Telegram redirector</title>
 	<link rel="icon" type="image/x-icon" href="favicon.ico" />
-	<style type="text/css">
-		#outer {
-			width: 100%;
-			height: 100vh;
-			display: flex;
-		}
-
-		#inner {
-			margin: auto;
-		}
-
-		body, html {
-			height: 100%;
-		}
-
-		#sticky-footer {
-			flex-shrink: none;
-		}
-
-		.btn {
-
-		}
-	</style>
+	<style type="text/css">%CSS%</style>
 </head>
 <body>
 	<div id="outer">
@@ -34,12 +12,26 @@
 			<script>
 			function convert(){
 				var website = "%WEBSITE%"
-				document.getElementById("inputUrl").value = document.getElementById("inputUrl").value.replace("t.me", website).replace("http://", "https://").replace("@", "https://"+ website +"/")
+				var value = document.getElementById("inputUrl").value
+				if(!value) return alert('No link provided');
+				if(value.indexOf('t.me') == -1) return alert('Wrong link');
+
+				var baseScheme = value.indexOf('http://') != -1 ? 'http://' : 'https://'
+				var currentScheme = document.location.protocol +'//'
+
+				var value = value.replace("t.me", website).replace(baseScheme, currentScheme).replace("@", currentScheme + website +"/")
+
+				document.getElementById("inputUrl").value = value
+
+				var link = document.getElementById("active_link");
+				link.href = value
+				link.className = 'btn display-block mt-15'
 			}
 			</script>
 
 			<input type="inputUrl" id="inputUrl" placeholder="t.me/.." required="" autofocus="">
-			<button class="btn" onclick="convert()" type="button">Convert</button>
+			<button class="" onclick="convert()" type="button">Convert</button>
+			<a class="hidden" id="active_link">Link</a>
 		</div>
 	</div>
 </body>

@@ -12,9 +12,12 @@
       "pre-commit": "pretty-quick --staged --pattern \"**/*.*(js|jsx)\""
     }
   },
+  "nodemonConfig": {
+    "ext": "js,mjs,json,html,css"
+  },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "cross-env": "^7.0.0",
     "husky": "^4.2.3",
     "nodemon": "^2.0.2",
