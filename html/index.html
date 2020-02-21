@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="UTF-8">
+	<title>Telegram redirector</title>
+	<style type="text/css">
+		#outer {
+			width: 100%;
+			height: 100vh;
+			display: flex;
+		}
+
+		#inner {
+			margin: auto;
+		}
+
+		body, html {
+			height: 100%;
+		}
+
+		#sticky-footer {
+			flex-shrink: none;
+		}
+
+		.btn {
+
+		}
+	</style>
+</head>
+<body>
+	<div id="outer">
+		<div id="inner">
+			<script>
+			function convert(){
+				var website = "%WEBSITE%"
+				document.getElementById("inputUrl").value = document.getElementById("inputUrl").value.replace("t.me", website).replace("http://", "https://").replace("@", "https://"+ website +"/")
+			}
+			</script>
+
+			<input type="inputUrl" id="inputUrl" placeholder="t.me/.." required="" autofocus="">
+			<button class="btn" onclick="convert()" type="button">Convert</button>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+node_modules
+upload
+local_storage
+config/config.js
+.env
+todo
+tmp
