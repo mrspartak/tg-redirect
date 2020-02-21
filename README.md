@@ -6,6 +6,12 @@
 
     #website e.i. tg.example.com
     const WEBSITE = process.env.WEBSITE || '127.0.0.1:3020';
+
+    #will count N seconds before redirect. 0 - instant redirect
+    const COUNTER = +process.env.COUNTER || 0;
+
+    #Debug
+    const DEBUG = process.env.DEBUG || false;
     
 ## Docker
 ```

@@ -3,7 +3,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta charset="UTF-8">
 	<title>Telegram redirector</title>
-
+	<link rel="icon" type="image/x-icon" href="favicon.ico" />
 	<style type="text/css">
 		#outer {
 			width: 100%;
@@ -37,7 +37,7 @@
 
 <script>
 	let domain = document.location.pathname.replace('/', '')
-	var count = 2;
+	var count = +'%COUNTER%';
 	var redirectlink = "tg://" + "resolve?domain="+ domain;
 
 	function redirect() {
