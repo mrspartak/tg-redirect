@@ -8,15 +8,19 @@
 </head>
 <body>
 	<div id="outer">
-		<div id="inner">
+		<div id="inner" class="inner-index">
 			<script>
 			console.log('Made by https://spartak.io', 'Github page https://github.com/mrspartak/tg-redirect');
+			function keyPressed(event) {
+				if (event.keyCode == 13) convert()
+			}
+
 			function convert(){
 				var error = document.getElementById("error");
 				var website = document.location.host;
 				var value = document.getElementById("inputUrl").value;
 				if(!value) {
-					error.className = 'text-error';
+					error.className = 'text-error mb-5';
 					error.innerHTML = 'No link provided';
 					return;
 				}
@@ -24,7 +28,7 @@
 				baseValue = value;
 
 				if(value.indexOf('t.me') == -1 && value.indexOf('@') == -1) {
-					error.className = 'text-error';
+					error.className = 'text-error mb-5';
 					error.innerHTML = 'Wrong link format';
 					return;
 				}
@@ -45,8 +49,29 @@
 
 				var link = document.getElementById("active_link");
 				link.href = value;
-				link.className = 'btn display-block mt-15';
+				link.className = 'btn display-block mt-25';
+
+				var copyBtn = document.getElementById("copy");
+				copyBtn.className = 'btn ml-5';
 			}
+
+			function copy() {
+				var value = document.getElementById("inputUrl").value;
+				copyToClipboard( value.trim().toLocaleLowerCase() )
+			}
+
+			function copyToClipboard (str) {
+				const el = document.createElement('textarea');
+				el.value = str;
+				el.setAttribute('readonly', '');
+				el.style.position = 'absolute';
+				el.style.left = '-9999px';
+				document.body.appendChild(el);
+				el.select();
+				document.execCommand('copy');
+				document.body.removeChild(el);
+			};
+
 			</script>
 
 			<h3>We support:</h3>
@@ -56,10 +81,18 @@
 			<p>Chat <b>https://t.me/joinchat/lofh3p2fh</b></p>
 			<p>Sticker <b>https://t.me/addstickers/random</b></p>
 
-			<input type="inputUrl" id="inputUrl" placeholder="t.me/.." required="" autofocus="" class="mt-15">
-			<button class="" onclick="convert()" type="button">Convert</button>
-			<span class="hidden" id="error"></span>
-			<a class="hidden" id="active_link">Link</a>
+			<div class="mt-15">
+				<span class="hidden" id="error"></span>
+				<input type="text" id="inputUrl" placeholder="t.me/.." required="" autofocus="" class="input" onkeypress="keyPressed(event)">
+			</div>
+
+			<div class="mt-15">
+				<button class="btn" onclick="convert()" type="button">Convert</button>
+				<button class="hidden" id="copy" onclick="copy()" type="button">Copy</button>
+			</div>
+
+			
+			<a class="hidden" id="active_link">Go to link</a>
 
 			<div class="contact">
 				Contact: <a href="tg://resolve?domain=catrps">@catrps</a><br>

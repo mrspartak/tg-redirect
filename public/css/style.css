@@ -1,5 +1,11 @@
 body {
 	font-family: monospace;
+	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #outer {
@@ -25,9 +31,72 @@ body, html {
 	display: block !important;
 }
 
+.input {
+	display: block;
+	width: 100%;
+	padding: 12px 7px;
+	border: 0px;
+	border-bottom: 2px solid #999;
+	border-top: 1px solid #eee;
+	box-shadow: 0px 1px 10px rgba(245, 245, 245, 1);
+	color: #777;
+}
+.input:focus {
+    outline: none;
+    box-shadow: 0px 2px 10px #ccc;
+    color: #000;
+}
+
+.Input {
+    position: relative;
+}
+.Input-text:focus {
+    outline: none;
+    box-shadow: 0.2rem 0.8rem 1.6rem var(--colorPrimary600);
+}
+.Input-text {
+    display: block;
+    margin: 0;
+    padding: var(--inputPaddingV) var(--inputPaddingH);
+    color: inherit;
+    width: 100%;
+    font-family: inherit;
+    font-size: var(--inputFontSize);
+    font-weight: inherit;
+    line-height: var(--inputLineHeight);
+    border: none;
+    border-radius: 0.4rem;
+    -webkit-transition: box-shadow var(--transitionDuration);
+    transition: box-shadow var(--transitionDuration);
+}
+.Input-text:placeholder-shown + .Input-label {
+    visibility: hidden;
+    z-index: -1;
+}
+.Input-label {
+    display: block;
+    position: absolute;
+    bottom: 50%;
+    left: 1rem;
+    color: #fff;
+    font-family: inherit;
+    font-size: var(--inputFontSize);
+    font-weight: inherit;
+    line-height: var(--inputLineHeight);
+    opacity: 0;
+    -webkit-transform: translate3d(0, var(--labelDefaultPosY), 0) scale(1);
+    transform: translate3d(0, var(--labelDefaultPosY), 0) scale(1);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transition: opacity var(--inputTransitionDuration) var(--inputTransitionTF), visibility 0ms var(--inputTransitionDuration) var(--inputTransitionTF), z-index 0ms var(--inputTransitionDuration) var(--inputTransitionTF), -webkit-transform var(--inputTransitionDuration) var(--inputTransitionTF);
+    transition: opacity var(--inputTransitionDuration) var(--inputTransitionTF), visibility 0ms var(--inputTransitionDuration) var(--inputTransitionTF), z-index 0ms var(--inputTransitionDuration) var(--inputTransitionTF), -webkit-transform var(--inputTransitionDuration) var(--inputTransitionTF);
+    transition: opacity var(--inputTransitionDuration) var(--inputTransitionTF), transform var(--inputTransitionDuration) var(--inputTransitionTF), visibility 0ms var(--inputTransitionDuration) var(--inputTransitionTF), z-index 0ms var(--inputTransitionDuration) var(--inputTransitionTF);
+    transition: opacity var(--inputTransitionDuration) var(--inputTransitionTF), transform var(--inputTransitionDuration) var(--inputTransitionTF), visibility 0ms var(--inputTransitionDuration) var(--inputTransitionTF), z-index 0ms var(--inputTransitionDuration) var(--inputTransitionTF), -webkit-transform var(--inputTransitionDuration) var(--inputTransitionTF);
+}
+
 .btn {
+	cursor: pointer;
 	display: inline-block;
-	margin-top: 15px;
 	font-size: 14px;
 	font-weight: bold;
 	line-height: 100%;
@@ -38,6 +107,7 @@ body, html {
 	padding: 15px 27px 13px;
 	text-transform: uppercase;
 	text-decoration: none;
+	border: 0px;
 }
 .btn:hover, .btn:active {
 	color: #FFF;
@@ -54,7 +124,7 @@ body, html {
 
 .contact {
 	position: fixed;
-	bottom:30px; 
+	bottom:20px; 
 	left:0; 
 	right:0;
 }
@@ -68,8 +138,19 @@ body, html {
 
 .mt-5 {margin-top: 5px;}
 .mt-15 {margin-top: 15px;}
+.mt-25 {margin-top: 25px;}
+.mr-5 {margin-right: 5px;}
+.ml-5 {margin-left: 5px;}
+.mb-5 {margin-bottom: 5px;}
 
 @-webkit-keyframes pulse {to {box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);}}
 @-moz-keyframes pulse {to {box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);}}
 @-ms-keyframes pulse {to {box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);}}
 @keyframes pulse {to {box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);}}
+
+
+@media only screen and (max-width: 600px) {
+	.inner-index {
+		margin-top: 20px !important;
+	}
+}
