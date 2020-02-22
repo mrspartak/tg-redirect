@@ -17,7 +17,7 @@
 ## Docker
 ```
 docker run -p 3020:3020 --name tg-redirect \
-  -e WEBSITE='tg.example.com' \
+  -e COUNTER=10 \
   assorium/tg-redirect:latest
 ```
 
