@@ -21,6 +21,7 @@ body {
 
 body, html {
 	height: 100%;
+	overflow: hidden;
 }
 
 .hidden {
@@ -47,53 +48,6 @@ body, html {
     color: #000;
 }
 
-.Input {
-    position: relative;
-}
-.Input-text:focus {
-    outline: none;
-    box-shadow: 0.2rem 0.8rem 1.6rem var(--colorPrimary600);
-}
-.Input-text {
-    display: block;
-    margin: 0;
-    padding: var(--inputPaddingV) var(--inputPaddingH);
-    color: inherit;
-    width: 100%;
-    font-family: inherit;
-    font-size: var(--inputFontSize);
-    font-weight: inherit;
-    line-height: var(--inputLineHeight);
-    border: none;
-    border-radius: 0.4rem;
-    -webkit-transition: box-shadow var(--transitionDuration);
-    transition: box-shadow var(--transitionDuration);
-}
-.Input-text:placeholder-shown + .Input-label {
-    visibility: hidden;
-    z-index: -1;
-}
-.Input-label {
-    display: block;
-    position: absolute;
-    bottom: 50%;
-    left: 1rem;
-    color: #fff;
-    font-family: inherit;
-    font-size: var(--inputFontSize);
-    font-weight: inherit;
-    line-height: var(--inputLineHeight);
-    opacity: 0;
-    -webkit-transform: translate3d(0, var(--labelDefaultPosY), 0) scale(1);
-    transform: translate3d(0, var(--labelDefaultPosY), 0) scale(1);
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-    -webkit-transition: opacity var(--inputTransitionDuration) var(--inputTransitionTF), visibility 0ms var(--inputTransitionDuration) var(--inputTransitionTF), z-index 0ms var(--inputTransitionDuration) var(--inputTransitionTF), -webkit-transform var(--inputTransitionDuration) var(--inputTransitionTF);
-    transition: opacity var(--inputTransitionDuration) var(--inputTransitionTF), visibility 0ms var(--inputTransitionDuration) var(--inputTransitionTF), z-index 0ms var(--inputTransitionDuration) var(--inputTransitionTF), -webkit-transform var(--inputTransitionDuration) var(--inputTransitionTF);
-    transition: opacity var(--inputTransitionDuration) var(--inputTransitionTF), transform var(--inputTransitionDuration) var(--inputTransitionTF), visibility 0ms var(--inputTransitionDuration) var(--inputTransitionTF), z-index 0ms var(--inputTransitionDuration) var(--inputTransitionTF);
-    transition: opacity var(--inputTransitionDuration) var(--inputTransitionTF), transform var(--inputTransitionDuration) var(--inputTransitionTF), visibility 0ms var(--inputTransitionDuration) var(--inputTransitionTF), z-index 0ms var(--inputTransitionDuration) var(--inputTransitionTF), -webkit-transform var(--inputTransitionDuration) var(--inputTransitionTF);
-}
-
 .btn {
 	cursor: pointer;
 	display: inline-block;
@@ -113,6 +67,9 @@ body, html {
 	color: #FFF;
 	background: #28c979;
 	text-decoration: none;
+}
+.btn:focus {
+	outline: none;
 }
 .btn-pulse {
 	box-shadow: 0 0 0 0 rgba(51, 214, 132, 0.7);
