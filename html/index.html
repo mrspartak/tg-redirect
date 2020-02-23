@@ -2,15 +2,23 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta charset="UTF-8">
-	<title>Telegram redirector</title>
+	<title>%meta_title%</title>
+	<meta name="description" content="%meta_description%"> 
+	<meta name="keywords" content="%meta_keywords%" />
+
 	<link rel="icon" type="image/x-icon" href="favicon.ico" />
 	<style type="text/css">%CSS%</style>
+
+	<meta property="og:title" content="%meta_title%"/>
+	<meta property="og:description" content="%meta_description%"/>
+	<meta property="og:image" content="/img/telegram.png">
+	<meta property="og:type" content="article"/>
 </head>
 <body>
 	<div id="outer">
 		<div id="inner" class="inner-index">
 			<script>
-			console.log('Made by https://spartak.io', 'Github page https://github.com/mrspartak/tg-redirect');
+			console.log('%console_made_by% https://spartak.io', '%console_github_page% https://github.com/mrspartak/tg-redirect');
 			function keyPressed(event) {
 				if (event.keyCode == 13) convert()
 			}
@@ -21,7 +29,7 @@
 				var value = document.getElementById("inputUrl").value;
 				if(!value) {
 					error.className = 'text-error mb-5';
-					error.innerHTML = 'No link provided';
+					error.innerHTML = '%error_no_link%';
 					return;
 				}
 				value = value.trim().toLocaleLowerCase();
@@ -29,7 +37,7 @@
 
 				if(value.indexOf('t.me') == -1 && value.indexOf('@') == -1) {
 					error.className = 'text-error mb-5';
-					error.innerHTML = 'Wrong link format';
+					error.innerHTML = '%error_wrong_link%';
 					return;
 				}
 
@@ -74,12 +82,15 @@
 
 			</script>
 
-			<h3>We support:</h3>
-			<p>User/Channel <b>https://t.me/user</b></p>
-			<p>Short syntax <b>@user</b></p>
-			<p>Post <b>https://t.me/user/10</b></p>
-			<p>Chat <b>https://t.me/joinchat/lofh3p2fh</b></p>
-			<p>Sticker <b>https://t.me/addstickers/random</b></p>
+
+			<h3>%we_support%:</h3>
+			<div class="mb-25">
+				<p>%user_channel% <b>https://t.me/user</b></p>
+				<p>%short_syntax% <b>@user</b></p>
+				<p>%post% <b>https://t.me/user/10</b></p>
+				<p>%chat% <b>https://t.me/joinchat/lofh3p2fh</b></p>
+				<p>%sticker% <b>https://t.me/addstickers/random</b></p>
+			</div>
 
 			<div class="mt-15">
 				<span class="hidden" id="error"></span>
@@ -87,15 +98,15 @@
 			</div>
 
 			<div class="mt-15">
-				<button class="btn" onclick="convert()" type="button">Convert</button>
-				<button class="hidden" id="copy" onclick="copy()" type="button">Copy</button>
+				<button class="btn" onclick="convert()" type="button">%convert%</button>
+				<button class="hidden" id="copy" onclick="copy()" type="button">%copy%</button>
 			</div>
 
 			
-			<a class="hidden" id="active_link">Go to link</a>
+			<a class="hidden" id="active_link">%go_to_link%</a>
 
 			<div class="contact">
-				Contact: <a href="tg://resolve?domain=catrps">@catrps</a><br>
+				%contact%: <a href="tg://resolve?domain=catrps">@catrps</a><br>
 				<a href="https://github.com/mrspartak/tg-redirect" target="_blank">Github</a>
 			</div>
 		</div>
