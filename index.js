@@ -69,12 +69,12 @@
 
 	/* serve requests */
 	const server = http.createServer(async (request, response) => {
-		let { hostname, pathname, query } = url.parse(request.url);
+		let { pathname, query } = url.parse(request.url);
 		query = querystring.parse(query);
 		let queryLang = query.lang && (query.lang == 'ru' || query.lang == 'en') ? query.lang : false;
 
 		let language = queryLang ? queryLang : __.detectLanguage(request);
-		if (DEBUG) console.log('req', language, hostname, pathname);
+		if (DEBUG) console.log('req', language, request.headers.host, pathname);
 
 		response.setHeader('Access-Control-Allow-Origin', '*');
 		response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
