@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+Sitemap: https://tgrm.cc/sitemap_ru.xml
+Sitemap: https://tgrm.cc/sitemap_en.xml

@@ -1,6 +1,7 @@
 (async () => {
 	const http = require('http');
 	const url = require('url');
+	const querystring = require('querystring');
 	const fsPromise = require('fs').promises;
 	const __ = require('./utils');
 
@@ -46,11 +47,16 @@
 		Object.keys(translatedHTML).forEach(page => {
 			translatedHTML[page][lang] = __.passVariables(
 				htmlPages[page].toString(),
-				Object.assign(LANG_DICT[lang], globalVars),
+				Object.assign(LANG_DICT[lang], globalVars, { language: lang }),
 			);
 			translatedHTML[page][lang] = __.minimizeHTML(translatedHTML[page][lang]);
 		});
 	});
+
+	//utility
+	let robots = await fsPromise.readFile('./public/robots.txt');
+	let sitemap_ru = await fsPromise.readFile('./public/sitemap_ru.xml');
+	let sitemap_en = await fsPromise.readFile('./public/sitemap_en.xml');
 
 	//garbage
 	delete htmlPages;
@@ -63,23 +69,36 @@
 
 	/* serve requests */
 	const server = http.createServer(async (request, response) => {
-		let path = url.parse(request.url).pathname;
-		let language = __.detectLanguage(request);
-		if (DEBUG) console.log('req', language, path);
+		let { pathname, query } = url.parse(request.url);
+		query = querystring.parse(query);
+		let queryLang = query.lang && (query.lang == 'ru' || query.lang == 'en') ? query.lang : false;
+
+		let language = queryLang ? queryLang : __.detectLanguage(request);
+		if (DEBUG) console.log('req', language, pathname);
 
 		response.setHeader('Access-Control-Allow-Origin', '*');
 		response.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+		response.setHeader('Content-Language', language);
 		response.setHeader('status', 200);
 
-		if (path == '/') {
+		if (pathname == '/') {
 			response.setHeader('Content-Type', 'text/html; charset=utf-8');
 			response.end(translatedHTML.indexPage[language]);
-		} else if (path == '/favicon.ico') {
+		} else if (pathname == '/favicon.ico') {
 			response.setHeader('Content-Type', 'image/x-icon');
 			response.end(favicon);
-		} else if (path == '/img/telegram.png') {
+		} else if (pathname == '/img/telegram.png') {
 			response.setHeader('Content-Type', 'image/png');
 			response.end(telegram_png);
+		} else if (pathname == '/robots.txt') {
+			response.setHeader('Content-Type', 'text/plain');
+			response.end(robots);
+		} else if (pathname == '/sitemap_ru.xml') {
+			response.setHeader('Content-Type', 'application/xml');
+			response.end(sitemap_ru);
+		} else if (pathname == '/sitemap_en.xml') {
+			response.setHeader('Content-Type', 'application/xml');
+			response.end(sitemap_en);
 		} else {
 			response.setHeader('Content-Type', 'text/html; charset=utf-8');
 			response.end(translatedHTML.redirectPage[language]);
