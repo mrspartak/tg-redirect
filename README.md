@@ -22,24 +22,26 @@ This app support auto translation to Russian and English. Also supports auto dar
     TRACKER_SECRET_FILE - name of secret file passed to docker image at /run/secrets/
     
 ## Docker
-```
 #you can use secrets
+```
 docker secret create tg_redirect "<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName()[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-XXXXX-Y', 'auto');ga('send', 'pageview');</script>"
 docker run -p 3020:3020 --name tg-redirect \
   -e COUNTER=10 -e TRACKER_SECRET_FILE=tg_redirect \
   --secret tg_redirect \
   assorium/tg-redirect:latest
+```
 
-#or if you want to use config file.
+or if you want to use config file.
+```
 docker config create tg_redirect "<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName()[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-XXXXX-Y', 'auto');ga('send', 'pageview');</script>"
 
 docker run -p 3020:3020 --name tg-redirect \
   -e COUNTER=10 -e TRACKER_CONFIG_FILE=/home/app/tracker.txt \
   --config src=tg_redirect,target="/home/app/tracker.txt" \
   assorium/tg-redirect:latest
-
-#Both methods will run only for docker swarm. If you need solo, fork repo, add tracker.txt to you repo and TRACKER_CONFIG_FILE=/path/to/tracker.txt
 ```
+
+Both methods will run only for docker swarm. If you need solo, fork repo, add tracker.txt to you repo and TRACKER_CONFIG_FILE=/path/to/tracker.txt
 
 ## Nginx
 This an example Nginx config
