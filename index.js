@@ -10,9 +10,10 @@
 	const COUNTER = +process.env.COUNTER || 0;
 	const DEBUG = process.env.DEBUG || false;
 
-	let track = '';
-	if (process.env.TRACKER_FILE)
-		track = (await fsPromise.readFile('/run/secrets/' + process.env.TRACKER_FILE)).toString();
+	var track = '';
+	if (process.env.TRACKER_CONFIG_FILE) var [err, track] = await __.to(fsPromise.readFile(TRACKER_CONFIG_FILE));
+	if (!track && process.env.TRACKER_SECRET_FILE)
+		var [err, track] = await __.to(fsPromise.readFile('/run/secrets/' + process.env.TRACKER_SECRET_FILE));
 
 	const TRACKER = track || '';
 
