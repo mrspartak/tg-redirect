@@ -16,11 +16,15 @@ This app support auto translation to Russian and English. Also supports auto dar
 
     #Debug
     const DEBUG = process.env.DEBUG || false;
+
+    #If you want to place tracker, GA for example
+    TRACKER_FILE - name of secret file passed to docker image at /run/secrets/
     
 ## Docker
 ```
 docker run -p 3020:3020 --name tg-redirect \
-  -e COUNTER=10 \
+  -e COUNTER=10 -e TRACKER_FILE=tg_redirect \
+  --secret tg_redirect \
   assorium/tg-redirect:latest
 ```
 

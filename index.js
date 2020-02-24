@@ -10,10 +10,17 @@
 	const COUNTER = +process.env.COUNTER || 0;
 	const DEBUG = process.env.DEBUG || false;
 
+	let track = '';
+	if (process.env.TRACKER_FILE)
+		track = (await fsPromise.readFile('/run/secrets/' + process.env.TRACKER_FILE)).toString();
+
+	const TRACKER = track || '';
+
 	console.log('APP_CONFIG', {
 		PORT,
 		COUNTER,
 		DEBUG,
+		TRACKER: !!TRACKER,
 	});
 
 	/* prepare content */
@@ -34,6 +41,7 @@
 	};
 	let globalVars = {
 		COUNTER,
+		TRACKER,
 		CSS: css,
 	};
 
