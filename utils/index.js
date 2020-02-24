@@ -18,18 +18,27 @@ exports.minimizeHTML = function(_content) {
 	return content;
 };
 exports.detectLanguage = function(request) {
-	let lheader = request.headers['accept-language'];
-	lheader = lheader.match(/[a-zA-Z\-]{2,10}/g).map(lang => lang.toLocaleLowerCase());
-
 	let ruPos = 100,
 		enPos = 100;
-	lheader.forEach((lang, i) => {
-		let posRu = lang.indexOf('ru');
-		let posEn = lang.indexOf('en');
 
-		if (posRu != -1 && ruPos > i) ruPos = i;
-		if (posEn != -1 && enPos > i) enPos = i;
-	});
+	try {
+		let lheader = request.headers['accept-language'];
+		lheader = lheader.match(/[a-zA-Z\-]{2,10}/g).map(lang => lang.toLocaleLowerCase());
+
+		lheader.forEach((lang, i) => {
+			let posRu = lang.indexOf('ru');
+			let posEn = lang.indexOf('en');
+
+			if (posRu != -1 && ruPos > i) ruPos = i;
+			if (posEn != -1 && enPos > i) enPos = i;
+		});
+	} catch (err) {
+		console.error(
+			'detectLanguage.e',
+			err.message,
+			request && request.headers ? request.headers['accept-language'] : '',
+		);
+	}
 
 	return ruPos <= enPos ? 'ru' : 'en';
 };
