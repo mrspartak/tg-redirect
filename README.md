@@ -1,6 +1,7 @@
 # Simple telegram redirector
 This app support auto translation to Russian and English. Also supports auto dark mode style. Docker image is about 30Mb and low memory/cpu usage.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/83470969354445a2a2d9be72a1c011f1)](https://app.codacy.com/manual/assorium/tg-redirect?utm_source=github.com&utm_medium=referral&utm_content=mrspartak/tg-redirect&utm_campaign=Badge_Grade_Dashboard)
 [![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/assorium/tg-redirect?style=for-the-badge "Docker Cloud Automated build")](https://hub.docker.com/r/assorium/tg-redirect "Docker Cloud Automated build")
 [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/assorium/tg-redirect?style=for-the-badge "Docker Cloud Build Status")](https://hub.docker.com/r/assorium/tg-redirect "Docker Cloud Build Status")
 [![Docker Pulls](https://img.shields.io/docker/pulls/assorium/tg-redirect?style=for-the-badge "Docker Pulls")](https://hub.docker.com/r/assorium/tg-redirect "Docker Pulls")  <br/>
