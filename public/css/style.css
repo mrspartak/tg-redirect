@@ -85,7 +85,6 @@ body, html {
     border-color: #1e7e34;
     box-shadow: 0 0 0 0.2rem rgba(72,180,97,.5);
 }
-}
 .btn:not(:disabled):not(.disabled):active {
 	background-color: #1e7e34;
     border-color: #1c7430;
@@ -124,9 +123,7 @@ body, html {
 
 @-webkit-keyframes pulse {to {box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);}}
 @-moz-keyframes pulse {to {box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);}}
-@-ms-keyframes pulse {to {box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);}}
 @keyframes pulse {to {box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);}}
-
 
 @media only screen and (max-width: 600px) {
 	.inner-index {
