@@ -1,107 +1,140 @@
 <!DOCTYPE html>
 <html lang="%language%">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta charset="UTF-8">
-	<title>%meta_title%</title>
-	<meta name="description" content="%meta_description%"> 
-	<meta name="keywords" content="%meta_keywords%" />
-	<link rel="icon" href="favicon.ico" type="image/x-icon" />
-	<style type="text/css">%CSS%</style>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta charset="UTF-8" />
+		<title>%meta_title%</title>
+		<meta name="description" content="%meta_description%" />
+		<meta name="keywords" content="%meta_keywords%" />
+		<link rel="icon" href="favicon.ico" type="image/x-icon" />
+		<style type="text/css">
+			%CSS%
+		</style>
 
-	<meta property="og:title" content="%meta_title%"/>
-	<meta property="og:description" content="%meta_description%"/>
-	<meta property="og:image" content="/img/telegram.png">
-	<meta property="og:type" content="article"/>
-</head>
-<body>
-	%TRACKER%
-	<div id="outer">
-		<div id="inner">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" class="img"><defs><linearGradient id="a" x1=".667" x2=".417" y1=".167" y2=".75"><stop offset="0" stop-color="#37aee2"/><stop offset="1" stop-color="#1e96c8"/></linearGradient><linearGradient id="b" x1=".66" x2=".851" y1=".437" y2=".802"><stop offset="0" stop-color="#eff7fc"/><stop offset="1" stop-color="#fff"/></linearGradient></defs><circle cx="120" cy="120" r="120" fill="url(#a)"/><path fill="#c8daea" d="M98 175c-3.888 0-3.227-1.468-4.568-5.17L82 132.207 170 80"/><path fill="#a9c9dd" d="M98 175c3 0 4.325-1.372 6-3l16-15.558-19.958-12.035"/><path fill="url(#b)" d="M100.04 144.41l48.36 35.729c5.519 3.045 9.501 1.468 10.876-5.123l19.685-92.763c2.015-8.08-3.08-11.746-8.36-9.349l-115.59 44.571c-7.89 3.165-7.843 7.567-1.438 9.528l29.663 9.259 68.673-43.325c3.242-1.966 6.218-.91 3.776 1.258"/></svg>
+		<meta property="og:title" content="%meta_title%" />
+		<meta property="og:description" content="%meta_description%" />
+		<meta property="og:image" content="/img/telegram.png" />
+		<meta property="og:type" content="article" />
+	</head>
+	<body>
+		%TRACKER%
+		<div id="outer">
+			<div id="inner">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" class="img">
+					<defs>
+						<linearGradient id="a" x1=".667" x2=".417" y1=".167" y2=".75">
+							<stop offset="0" stop-color="#37aee2" />
+							<stop offset="1" stop-color="#1e96c8" />
+						</linearGradient>
+						<linearGradient id="b" x1=".66" x2=".851" y1=".437" y2=".802">
+							<stop offset="0" stop-color="#eff7fc" />
+							<stop offset="1" stop-color="#fff" />
+						</linearGradient>
+					</defs>
+					<circle cx="120" cy="120" r="120" fill="url(#a)" />
+					<path fill="#c8daea" d="M98 175c-3.888 0-3.227-1.468-4.568-5.17L82 132.207 170 80" />
+					<path fill="#a9c9dd" d="M98 175c3 0 4.325-1.372 6-3l16-15.558-19.958-12.035" />
+					<path
+						fill="url(#b)"
+						d="M100.04 144.41l48.36 35.729c5.519 3.045 9.501 1.468 10.876-5.123l19.685-92.763c2.015-8.08-3.08-11.746-8.36-9.349l-115.59 44.571c-7.89 3.165-7.843 7.567-1.438 9.528l29.663 9.259 68.673-43.325c3.242-1.966 6.218-.91 3.776 1.258"
+					/>
+				</svg>
 
+				<a
+					href="tg://resolve?domain=design_labodina_blog"
+					id="active_link"
+					class="btn btn-pulse"
+					role="button"
+					aria-pressed="true"
+					>%button_open_telegram%</a
+				>
+				<div id="timer" class="mt-15">
+					%redirecting%...
+				</div>
 
-			<a href="tg://resolve?domain=design_labodina_blog" id="active_link" class="btn btn-pulse" role="button" aria-pressed="true">%button_open_telegram%</a>
-			<div id="timer" class="mt-15">
-				%redirecting%...
-			</div>
-
-			<div class="contact">
-				%contact%: <a href="tg://resolve?domain=catrps">@catrps</a><br>
-				<a href="https://github.com/mrspartak/tg-redirect" target="_blank">Github</a>
+				<div class="contact">
+					%contact%: <a href="tg://resolve?domain=catrps">@catrps</a><br />
+					<a href="https://github.com/mrspartak/tg-redirect" target="_blank">Github</a>
+				</div>
 			</div>
 		</div>
-	</div>
 
-<script>
-	console.log('%console_made_by% https://spartak.io', '%console_github_page% https://github.com/mrspartak/tg-redirect');
-	
-	var urlParams = new URLSearchParams(window.location.search);
-	var count_q = urlParams.get('counter');
-	var count = count_q ? +count_q : +'%COUNTER%';
+		<script>
+			console.log(
+				'%console_made_by% https://spartak.io',
+				'%console_github_page% https://github.com/mrspartak/tg-redirect',
+			);
 
-	var redirectlink = "";
-	var link = document.getElementById("active_link");
-	var path = document.location.pathname;
+			var urlParams = new URLSearchParams(window.location.search);
+			var count_q = urlParams.get('counter');
+			var count = count_q ? +count_q : +'%COUNTER%';
 
-//chat 
-	if(path.indexOf('/joinchat/') != -1) {
-		var chat = path.replace('/joinchat/', '');
-		var redirectlink = "tg://" + "join?invite="+ chat;
-		link.innerHTML = '%button_join_chat%';
+			var redirectlink = '';
+			var link = document.getElementById('active_link');
+			var path = document.location.pathname;
 
-//sticker pack
-	} else if(path.indexOf('/addstickers/') != -1) {
-		var stickers = path.replace('/addstickers/', '');
-		var redirectlink = "tg://" + "addstickers?set="+ stickers;
-		link.innerHTML = '%button_add_stickers%';
+			//chat
+			if (path.indexOf('/joinchat/') != -1) {
+				//console.log('chat');
+				var chat = path.replace('/joinchat/', '');
+				var redirectlink = 'tg://' + 'join?invite=' + chat;
+				link.innerHTML = '%button_join_chat%';
 
-//private chat
-	} else if(path.indexOf('/c/') != -1) {
-		let chatPath = path.replace('/c/', '');
-		chatPath = chatPath.split('/');
+				//sticker pack
+			} else if (path.indexOf('/addstickers/') != -1) {
+				//console.log('sticker pack');
+				var stickers = path.replace('/addstickers/', '');
+				var redirectlink = 'tg://' + 'addstickers?set=' + stickers;
+				link.innerHTML = '%button_add_stickers%';
 
-		redirectlink = "tg://" + "privatepost?channel="+ chatPath[0] + "&post="+ chatPath[1];
-		link.innerHTML = '%button_join_chat%';
+				//private chat
+			} else if (path.indexOf('/c/') != -1) {
+				//console.log('private chat');
+				let chatPath = path.replace('/c/', '');
+				chatPath = chatPath.split('/');
 
-//person or channel
-	} else {
-		var domain = path.replace(/^\//, '');
-		var isPost = domain.split('/');
+				redirectlink = 'tg://privatepost?channel=' + chatPath[0] + '&post=' + chatPath[1];
+				link.innerHTML = '%button_join_chat%';
 
-		if(isPost.length == 2) {
-			redirectlink = "tg://" + "resolve?domain="+ isPost[0] +'&post='+ isPost[1];
-			link.innerHTML = '%button_open_post%';
-		} else {
-			redirectlink = "tg://" + "resolve?domain="+ domain;
-			link.innerHTML = '%button_open_telegram%';
-		}
-	}
-	
-	link.href = redirectlink;
+				//person or channel
+			} else {
+				console.log('person or channel');
+				var domain = path.replace(/^\//, '');
+				var isPost = domain.split('/');
 
-	function counter() {
-		var timer = document.getElementById("timer");
+				if (isPost.length == 2) {
+					redirectlink = 'tg://' + 'resolve?domain=' + isPost[0] + '&post=' + isPost[1];
+					link.innerHTML = '%button_open_post%';
+				} else {
+					redirectlink = 'tg://' + 'resolve?domain=' + domain;
+					link.innerHTML = '%button_open_telegram%';
+				}
+			}
 
-		if (count > 0) {
-			count--;
-			timer.innerHTML = "%countdown_till% " + count + " %sec%.";
-			setTimeout(counter, 1000);
-		} else {
-			redirect(redirectlink);
-			timer.innerHTML = "%redirecting%...";
+			link.href = redirectlink;
 
-			setTimeout(() => {
-				timer.innerHTML = "";
-			}, 3000)
-		}
-	}
+			function counter() {
+				var timer = document.getElementById('timer');
 
-	function redirect(url) {
-		document.location = url;
-	}
+				if (count > 0) {
+					count--;
+					timer.innerHTML = '%countdown_till% ' + count + ' %sec%.';
+					setTimeout(counter, 1000);
+				} else {
+					redirect(redirectlink);
+					timer.innerHTML = '%redirecting%...';
 
-	counter();
-</script>
-</body>
+					setTimeout(() => {
+						timer.innerHTML = '';
+					}, 3000);
+				}
+			}
+
+			function redirect(url) {
+				document.location = url;
+			}
+
+			counter();
+		</script>
+	</body>
 </html>

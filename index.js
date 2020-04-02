@@ -59,7 +59,7 @@
 				htmlPages[page].toString(),
 				Object.assign(LANG_DICT[lang], globalVars, { language: lang }),
 			);
-			translatedHTML[page][lang] = __.minimizeHTML(translatedHTML[page][lang]);
+			//translatedHTML[page][lang] = __.minimizeHTML(translatedHTML[page][lang]);
 		});
 	});
 
