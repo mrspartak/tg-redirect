@@ -44,14 +44,27 @@
 	var link = document.getElementById("active_link");
 	var path = document.location.pathname;
 
+//chat 
 	if(path.indexOf('/joinchat/') != -1) {
 		var chat = path.replace('/joinchat/', '');
 		var redirectlink = "tg://" + "join?invite="+ chat;
 		link.innerHTML = '%button_join_chat%';
+
+//sticker pack
 	} else if(path.indexOf('/addstickers/') != -1) {
 		var stickers = path.replace('/addstickers/', '');
 		var redirectlink = "tg://" + "addstickers?set="+ stickers;
 		link.innerHTML = '%button_add_stickers%';
+
+//private chat
+	} else if(path.indexOf('/c/') != -1) {
+		let chatPath = path.replace('/c/', '');
+		chatPath = chatPath.split('/')
+
+		redirectlink = "tg://" + "privatepost?channel="+ chatPath[0] + "&post="+ chatPath[1];
+		link.innerHTML = '%button_join_chat%';
+
+//person or channel
 	} else {
 		var domain = path.replace(/^\//, '');
 		var isPost = domain.split('/');
