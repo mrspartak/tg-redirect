@@ -59,7 +59,7 @@
 //private chat
 	} else if(path.indexOf('/c/') != -1) {
 		let chatPath = path.replace('/c/', '');
-		chatPath = chatPath.split('/')
+		chatPath = chatPath.split('/');
 
 		redirectlink = "tg://" + "privatepost?channel="+ chatPath[0] + "&post="+ chatPath[1];
 		link.innerHTML = '%button_join_chat%';
