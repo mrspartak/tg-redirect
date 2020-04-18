@@ -1,120 +1,130 @@
 <!DOCTYPE html>
 <html lang="%language%">
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta charset="UTF-8">
-	<title>%meta_title%</title>
-	<meta name="description" content="%meta_description%"> 
-	<meta name="keywords" content="%meta_keywords%" />
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta charset="UTF-8" />
+		<title>%meta_title%</title>
+		<meta name="description" content="%meta_description%" />
+		<meta name="keywords" content="%meta_keywords%" />
 
-	<link rel="alternate" hreflang="ru" href="/?lang=ru">
-	<link rel="alternate" hreflang="en" href="/?lang=en">
+		<link rel="alternate" hreflang="ru" href="/?lang=ru" />
+		<link rel="alternate" hreflang="en" href="/?lang=en" />
 
-	<link rel="icon" type="image/x-icon" href="favicon.ico" />
-	<style type="text/css">%CSS%</style>
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<style type="text/css">
+			%CSS%
+		</style>
 
-	<meta property="og:title" content="%meta_title%"/>
-	<meta property="og:description" content="%meta_description%"/>
-	<meta property="og:image" content="/img/telegram.png">
-	<meta property="og:type" content="article"/>
-</head>
-<body>
-	%TRACKER%
-	<div id="outer">
-		<div id="inner" class="inner-index">
-			<script>
-			console.log('%console_made_by% https://spartak.io', '%console_github_page% https://github.com/mrspartak/tg-redirect');
-			function keyPressed(event) {
-				if (event.keyCode == 13) convert()
-			}
+		<meta property="og:title" content="%meta_title%" />
+		<meta property="og:description" content="%meta_description%" />
+		<meta property="og:image" content="/img/telegram.png" />
+		<meta property="og:type" content="article" />
+	</head>
+	<body>
+		%TRACKER%
+		<div id="outer">
+			<div id="inner" class="inner-index">
+				<script>
+					console.log(
+						'%console_made_by% https://spartak.io',
+						'%console_github_page% https://github.com/mrspartak/tg-redirect',
+					);
+					function keyPressed(event) {
+						if (event.keyCode == 13) convert();
+					}
 
-			function convert(){
-				var error = document.getElementById("error");
-				var website = document.location.host;
-				var value = document.getElementById("inputUrl").value;
-				if(!value) {
-					error.className = 'text-error mb-5';
-					error.innerHTML = '%error_no_link%';
-					return;
-				}
-				value = value.trim().toLocaleLowerCase();
-				baseValue = value;
+					function convert() {
+						var error = document.getElementById('error');
+						var website = document.location.host;
+						var value = document.getElementById('inputUrl').value;
+						if (!value) {
+							error.className = 'text-error mb-5';
+							error.innerHTML = '%error_no_link%';
+							return;
+						}
+						value = value.trim(); //.toLocaleLowerCase();
+						baseValue = value;
 
-				if(value.indexOf('t.me') == -1 && value.indexOf('@') == -1) {
-					error.className = 'text-error mb-5';
-					error.innerHTML = '%error_wrong_link%';
-					return;
-				}
+						if (value.indexOf('t.me') == -1 && value.indexOf('@') == -1) {
+							error.className = 'text-error mb-5';
+							error.innerHTML = '%error_wrong_link%';
+							return;
+						}
 
-				error.className = 'hidden';
+						error.className = 'hidden';
 
-				var baseScheme = false;
-				if(value.indexOf('http://') != -1) baseScheme = 'http://';
-				if(value.indexOf('https://') != -1) baseScheme = 'https://';
+						var baseScheme = false;
+						if (value.indexOf('http://') != -1) baseScheme = 'http://';
+						if (value.indexOf('https://') != -1) baseScheme = 'https://';
 
-				var currentScheme = document.location.protocol +'//';
+						var currentScheme = document.location.protocol + '//';
 
-				var value = value.replace("t.me", website).replace("@", currentScheme + website +"/");
-				if(baseScheme) value = value.replace(baseScheme, currentScheme);
-				else if(baseValue.indexOf('t.me') != -1) value = currentScheme + value;
+						var value = value.replace('t.me', website).replace('@', currentScheme + website + '/');
+						if (baseScheme) value = value.replace(baseScheme, currentScheme);
+						else if (baseValue.indexOf('t.me') != -1) value = currentScheme + value;
 
-				document.getElementById("inputUrl").value = value;
+						document.getElementById('inputUrl').value = value;
 
-				var link = document.getElementById("active_link");
-				link.href = value;
-				link.className = 'btn display-block mt-25';
+						var link = document.getElementById('active_link');
+						link.href = value;
+						link.className = 'btn display-block mt-25';
 
-				var copyBtn = document.getElementById("copy");
-				copyBtn.className = 'btn ml-5';
-			}
+						var copyBtn = document.getElementById('copy');
+						copyBtn.className = 'btn ml-5';
+					}
 
-			function copy() {
-				var value = document.getElementById("inputUrl").value;
-				copyToClipboard( value.trim().toLocaleLowerCase() )
-			}
+					function copy() {
+						var value = document.getElementById('inputUrl').value;
+						copyToClipboard(value.trim()); //.toLocaleLowerCase() )
+					}
 
-			function copyToClipboard (str) {
-				const el = document.createElement('textarea');
-				el.value = str;
-				el.setAttribute('readonly', '');
-				el.style.position = 'absolute';
-				el.style.left = '-9999px';
-				document.body.appendChild(el);
-				el.select();
-				document.execCommand('copy');
-				document.body.removeChild(el);
-			};
+					function copyToClipboard(str) {
+						const el = document.createElement('textarea');
+						el.value = str;
+						el.setAttribute('readonly', '');
+						el.style.position = 'absolute';
+						el.style.left = '-9999px';
+						document.body.appendChild(el);
+						el.select();
+						document.execCommand('copy');
+						document.body.removeChild(el);
+					}
+				</script>
 
-			</script>
+				<h3>%we_support%:</h3>
+				<div class="mb-25">
+					<p>%user_channel% <b>https://t.me/user</b></p>
+					<p>%short_syntax% <b>@user</b></p>
+					<p>%post% <b>https://t.me/user/10</b></p>
+					<p>%chat% <b>https://t.me/joinchat/lofh3p2fh</b></p>
+					<p>%sticker% <b>https://t.me/addstickers/random</b></p>
+				</div>
 
+				<div class="mt-15">
+					<span class="hidden" id="error"></span>
+					<input
+						type="text"
+						id="inputUrl"
+						placeholder="t.me/.."
+						required=""
+						autofocus=""
+						class="input"
+						onkeypress="keyPressed(event)"
+					/>
+				</div>
 
-			<h3>%we_support%:</h3>
-			<div class="mb-25">
-				<p>%user_channel% <b>https://t.me/user</b></p>
-				<p>%short_syntax% <b>@user</b></p>
-				<p>%post% <b>https://t.me/user/10</b></p>
-				<p>%chat% <b>https://t.me/joinchat/lofh3p2fh</b></p>
-				<p>%sticker% <b>https://t.me/addstickers/random</b></p>
-			</div>
+				<div class="mt-15">
+					<button class="btn" onclick="convert()" type="button">%convert%</button>
+					<button class="hidden" id="copy" onclick="copy()" type="button">%copy%</button>
+				</div>
 
-			<div class="mt-15">
-				<span class="hidden" id="error"></span>
-				<input type="text" id="inputUrl" placeholder="t.me/.." required="" autofocus="" class="input" onkeypress="keyPressed(event)">
-			</div>
+				<a class="hidden" id="active_link">%go_to_link%</a>
 
-			<div class="mt-15">
-				<button class="btn" onclick="convert()" type="button">%convert%</button>
-				<button class="hidden" id="copy" onclick="copy()" type="button">%copy%</button>
-			</div>
-
-			
-			<a class="hidden" id="active_link">%go_to_link%</a>
-
-			<div class="contact">
-				%contact%: <a href="tg://resolve?domain=catrps">@catrps</a><br>
-				<a href="https://github.com/mrspartak/tg-redirect" target="_blank">Github</a>
+				<div class="contact">
+					%contact%: <a href="tg://resolve?domain=catrps">@catrps</a><br />
+					<a href="https://github.com/mrspartak/tg-redirect" target="_blank">Github</a>
+				</div>
 			</div>
 		</div>
-	</div>
-</body>
+	</body>
 </html>
