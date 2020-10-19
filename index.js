@@ -16,13 +16,18 @@
 	if (!track && process.env.TRACKER_SECRET_FILE)
 		var [err, track] = await __.to(fsPromise.readFile('/run/secrets/' + process.env.TRACKER_SECRET_FILE));
 
+	var embed = '';
+	if (process.env.EMBED_FILE) var [err, embed] = await __.to(fsPromise.readFile(process.env.EMBED_FILE));
+
 	const TRACKER = track || '';
+	const EMBED = embed || '';
 
 	console.log('APP_CONFIG', {
 		PORT,
 		COUNTER,
 		DEBUG,
 		TRACKER: !!TRACKER,
+		EMBED: !!EMBED,
 	});
 
 	/* prepare content */
@@ -44,6 +49,7 @@
 	let globalVars = {
 		COUNTER,
 		TRACKER,
+		EMBED,
 		CSS: css,
 	};
 
