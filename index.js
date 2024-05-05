@@ -71,6 +71,7 @@
 
 	//utility
 	let robots = await fsPromise.readFile('./public/robots.txt');
+	let ads = await fsPromise.readFile('./public/ads.txt');
 	let sitemap_ru = await fsPromise.readFile('./public/sitemap_ru.xml');
 	let sitemap_en = await fsPromise.readFile('./public/sitemap_en.xml');
 
@@ -115,6 +116,9 @@
 		} else if (pathname == '/sitemap_en.xml') {
 			response.setHeader('Content-Type', 'application/xml');
 			response.end(sitemap_en);
+		} else if (pathname == '/ads.txt') {
+			response.setHeader('Content-Type', 'aptext/plainml');
+			response.end(ads);
 		} else {
 			response.setHeader('Content-Type', 'text/html; charset=utf-8');
 			response.end(translatedHTML.redirectPage[language]);
